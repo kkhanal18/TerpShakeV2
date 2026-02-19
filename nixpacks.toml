@@ -2,4 +2,4 @@
 cmds = ["npm install"]
 
 [phases.build]
-cmds = ["npm install --prefix client && npm run build --prefix client"]
+cmds = ["npm install --prefix client && SKIP_PREFLIGHT_CHECK=true npm run build --prefix client"]
