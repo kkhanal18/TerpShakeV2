@@ -1,7 +1,6 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/auth";
@@ -11,8 +10,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     name: "",
     email: "",
     password: "",
-    password2: ""
+    password2: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
 
   const { name, email, password, password2 } = formData;
 
@@ -28,97 +29,223 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     }
   };
 
-  //Redirect if logged in
   if (isAuthenticated) {
     return <Redirect to="/dashboard" />;
   }
 
   return (
-    <div className="row mt-3 px-2">
-      <div className="col-md-6 mx-auto">
-        <div className="card bg-light">
-          <div className="card-body">
-            <div className="text-center">
-              <h1>
-                <i class="fas fa-user"></i> Sign Up
-              </h1>
-            </div>
-            <form className="form" onSubmit={e => onSubmit(e)}>
-              <label htmlFor="email">Name</label>
+    <div style={styles.page}>
+      <div style={styles.card}>
+        <h2 style={styles.title}>Create an account</h2>
+        <p style={styles.subtitle}>Join TerpShake today</p>
 
-              <div className="form-group">
-                <input
-                  className="form-control input-sm"
-                  type="text"
-                  name="name"
-                  value={name}
-                  onChange={e => onChange(e)}
-                  // required
-                />
-              </div>
-              <label htmlFor="email">Email</label>
-              <div className="form-group">
-                <input
-                  className="form-control"
-                  type="email"
-                  name="email"
-                  value={email}
-                  onChange={e => onChange(e)}
-                />
-                <small className="form-text"></small>
-              </div>
-              <label htmlFor="email">Password</label>
+        <form onSubmit={onSubmit} style={styles.form}>
+          <div style={styles.field}>
+            <label style={styles.label} htmlFor="name">Name</label>
+            <input
+              id="name"
+              style={styles.input}
+              type="text"
+              name="name"
+              value={name}
+              onChange={onChange}
+              placeholder="Your name"
+              onFocus={e => (e.target.style.borderColor = "#0e1111")}
+              onBlur={e => (e.target.style.borderColor = "#e0e0e0")}
+              required
+            />
+          </div>
 
-              <div className="form-group">
-                <input
-                  className="form-control"
-                  type="password"
-                  name="password"
-                  minLength="6"
-                  value={password}
-                  onChange={e => onChange(e)}
-                />
-              </div>
-              <label htmlFor="email">Confirm Password</label>
+          <div style={styles.field}>
+            <label style={styles.label} htmlFor="email">Email</label>
+            <input
+              id="email"
+              style={styles.input}
+              type="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+              placeholder="you@example.com"
+              onFocus={e => (e.target.style.borderColor = "#0e1111")}
+              onBlur={e => (e.target.style.borderColor = "#e0e0e0")}
+              required
+            />
+          </div>
 
-              <div className="form-group">
-                <input
-                  className="form-control"
-                  type="password"
-                  name="password2"
-                  minLength="6"
-                  value={password2}
-                  onChange={e => onChange(e)}
-                />
-              </div>
+          <div style={styles.field}>
+            <label style={styles.label} htmlFor="password">Password</label>
+            <div style={styles.passwordWrapper}>
               <input
-                type="submit"
-                className="btn btn-dark btn-block"
-                value="Register"
+                id="password"
+                style={{ ...styles.input, paddingRight: "3rem" }}
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={password}
+                onChange={onChange}
+                placeholder="••••••••"
+                minLength="6"
+                onFocus={e => (e.target.style.borderColor = "#0e1111")}
+                onBlur={e => (e.target.style.borderColor = "#e0e0e0")}
+                required
               />
-            </form>
-            <div className="mt-3 mb-0">
-              <span style={{ opacity: ".6" }}>Already have an account?</span>{" "}
-              <Link to="/login">Login</Link>
+              <button
+                type="button"
+                style={styles.eyeBtn}
+                onClick={() => setShowPassword(v => !v)}
+                tabIndex={-1}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`} />
+              </button>
             </div>
           </div>
-        </div>
+
+          <div style={styles.field}>
+            <label style={styles.label} htmlFor="password2">Confirm Password</label>
+            <div style={styles.passwordWrapper}>
+              <input
+                id="password2"
+                style={{ ...styles.input, paddingRight: "3rem" }}
+                type={showPassword2 ? "text" : "password"}
+                name="password2"
+                value={password2}
+                onChange={onChange}
+                placeholder="••••••••"
+                minLength="6"
+                onFocus={e => (e.target.style.borderColor = "#0e1111")}
+                onBlur={e => (e.target.style.borderColor = "#e0e0e0")}
+                required
+              />
+              <button
+                type="button"
+                style={styles.eyeBtn}
+                onClick={() => setShowPassword2(v => !v)}
+                tabIndex={-1}
+                aria-label={showPassword2 ? "Hide password" : "Show password"}
+              >
+                <i className={`fas ${showPassword2 ? "fa-eye-slash" : "fa-eye"}`} />
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" style={styles.submitBtn}>
+            Create account
+          </button>
+        </form>
+
+        <p style={styles.footer}>
+          Already have an account?{" "}
+          <Link to="/login" style={styles.link}>Sign in</Link>
+        </p>
       </div>
     </div>
   );
 };
 
+const styles = {
+  page: {
+    minHeight: "calc(100vh - 60px)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "2rem 1rem",
+    backgroundColor: "#fff",
+  },
+  card: {
+    width: "100%",
+    maxWidth: "420px",
+    padding: "2.5rem",
+    border: "1px solid #e8e8e8",
+    borderRadius: "12px",
+    boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+    backgroundColor: "#fff",
+  },
+  title: {
+    fontSize: "1.6rem",
+    fontWeight: 700,
+    color: "#0e1111",
+    margin: "0 0 0.25rem",
+  },
+  subtitle: {
+    fontSize: "0.95rem",
+    color: "#777",
+    margin: "0 0 2rem",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1.25rem",
+  },
+  field: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.4rem",
+  },
+  label: {
+    fontSize: "0.875rem",
+    fontWeight: 600,
+    color: "#333",
+  },
+  input: {
+    width: "100%",
+    padding: "0.65rem 0.9rem",
+    fontSize: "0.95rem",
+    border: "1px solid #e0e0e0",
+    borderRadius: "8px",
+    outline: "none",
+    transition: "border-color 0.15s ease",
+    backgroundColor: "#fafafa",
+    boxSizing: "border-box",
+  },
+  passwordWrapper: {
+    position: "relative",
+  },
+  eyeBtn: {
+    position: "absolute",
+    right: "0.75rem",
+    top: "50%",
+    transform: "translateY(-50%)",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    color: "#aaa",
+    padding: "0",
+    fontSize: "0.9rem",
+  },
+  submitBtn: {
+    marginTop: "0.5rem",
+    padding: "0.75rem",
+    fontSize: "0.95rem",
+    fontWeight: 700,
+    color: "#fff",
+    backgroundColor: "#0e1111",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+    transition: "background-color 0.15s ease",
+    width: "100%",
+  },
+  footer: {
+    marginTop: "1.5rem",
+    textAlign: "center",
+    fontSize: "0.875rem",
+    color: "#777",
+  },
+  link: {
+    color: "#0e1111",
+    fontWeight: 600,
+    textDecoration: "none",
+  },
+};
+
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(
-  mapStateToProps,
-  { setAlert, register }
-)(Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);
