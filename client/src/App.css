@@ -1,0 +1,351 @@
+body, input, button, select, textarea {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+}
+
+
+.landing {
+  background-color: #fff;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+}
+
+.landing-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 30px;
+}
+
+.landing-text {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.landing-text h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.landing-text p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.landing-image {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: -30px;
+}
+
+.landing-image img {
+  width: 760px;
+  max-width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%),
+                      linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%),
+              linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.landing-inner {
+  color: #fff;
+  height: 60%;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.text-primary {
+  color: black;
+}
+
+.dash-buttons a {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.2rem;
+}
+
+.post .post-date {
+  color: #aaa;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.post {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 2rem;
+  align-items: center;
+}
+/* 
+.nav-link {
+  font-size: 17px !important;
+} */
+
+.avatar {
+  height: 200px;
+  width: 200px;
+  background-color: #fff;
+  object-fit: fill;
+}
+
+/* .nav-link :hover {
+  color: rgb(79, 0, 0) !important;
+} */
+
+/* .top-banner {
+  background-color: #c0392b;
+} */
+
+.underlined-title {
+  text-decoration: underline;
+}
+.underlined-title :hover {
+  text-decoration-color: #c0392b;
+}
+
+/* Profiles Page */
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr;
+  align-items: center;
+  grid-gap: 2rem;
+  padding: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+/* Profile Page */
+.profile-grid {
+  display: grid;
+  grid-template-areas:
+    "top top"
+    "about about"
+    "exp edu"
+    "github github";
+  grid-gap: 1rem;
+}
+
+.profile-top {
+  grid-area: top;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.profile-img {
+  width: 200px;
+}
+
+.profile-top .icons a {
+  color: #fff;
+  margin: 0 0.3rem;
+}
+
+.profile-top .icons a:hover {
+  color: var(--dark-color);
+}
+
+.profile-about {
+  grid-area: about;
+  text-align: center;
+}
+
+.profile-about .skills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.profile-exp {
+  grid-area: exp;
+}
+
+.profile-edu {
+  grid-area: edu;
+}
+
+.profile-exp h2,
+.profile-edu h2 {
+  margin-bottom: 1rem;
+}
+
+.profile-exp > div,
+.profile-edu > div {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: #ccc 1px dotted;
+}
+
+.profile-exp > div:last-child,
+.profile-edu > div:last-child {
+  border: 0;
+}
+
+.profile-exp p,
+.profile-edu p {
+  margin: 0.5rem 0;
+}
+
+.round-img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  object-fit: fill;
+}
+
+/* (removed full-bleed background image — image is now inline in landing-image) */
+
+.photo {
+  border-radius: 45px;
+  margin-right: 20px;
+  width: 90px;
+  height: 90px;
+}
+
+.expertise-label {
+  display: block;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+/* ── Navbar – Joblist-style ─────────────────────────────── */
+.navbar-custom {
+  background-color: #fff !important;
+  border-bottom: 1px solid #e8e8e8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: 0 !important;
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 60px;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+@media (min-width: 768px) {
+  .navbar-container {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-container {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+  }
+}
+
+.navbar-brand-custom {
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  color: #0e1111 !important;
+  letter-spacing: -0.4px;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.navbar-brand-custom:hover {
+  color: #0e1111 !important;
+  opacity: 0.75;
+}
+
+.navbar-nav-custom {
+  align-items: center;
+}
+
+/* icon-on-top link */
+.navbar-nav-custom .nav-link-icon-text {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  color: #0e1111 !important;
+  font-weight: 600;
+  font-size: 0.92rem;
+  line-height: 1;
+  padding: 14px 20px !important;
+  text-decoration: none !important;
+  transition: opacity 0.15s ease;
+}
+
+.navbar-nav-custom .nav-link-icon-text:hover {
+  opacity: 0.6;
+  color: #0e1111 !important;
+  text-decoration: none !important;
+}
+
+.nav-icon-top {
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+}
+
+/* Register button */
+.nav-item-register {
+  margin-left: 8px;
+}
+
+.nav-btn-register {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0e1111;
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 9px 20px;
+  border-radius: 4px;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.nav-btn-register:hover {
+  background-color: #2d3436;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* Mobile: switch icon-text to row layout */
+@media (max-width: 991px) {
+  .navbar-nav-custom .nav-link-icon-text {
+    flex-direction: row;
+    font-size: 0.9rem;
+    padding: 10px 4px !important;
+  }
+
+  .nav-icon-top {
+    margin-bottom: 0;
+    margin-right: 8px;
+  }
+
+  .nav-item-register {
+    margin-left: 0;
+    padding: 8px 0;
+  }
+}
